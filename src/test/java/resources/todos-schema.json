@@ -1,0 +1,25 @@
+{
+    "type":"object",
+    "properties":{
+        "todos": {
+            "type":"array",
+            "items":
+            {
+                "type":"object",
+                "properties":{
+                    "description": {
+                        "type":"string"
+                    },
+                    "done": {
+                        "type":"boolean"
+                    },
+                    "title": {
+                        "type":"string"
+                    }
+                }
+            }
+
+
+        }
+    }
+}
