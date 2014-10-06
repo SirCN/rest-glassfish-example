@@ -26,6 +26,6 @@ public class ApplicationConfig extends Application{
 //    * populate given list with all resources defined in the project.
 //    */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(TodoController.class);
+        resources.add(controllers.TodoController.class);
     }
 }
