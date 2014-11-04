@@ -6,7 +6,7 @@
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <container qualifier="glassfish" default="true">
         <configuration>
-            <property name="glassFishHome">/usr/local/Cellar/glassfish/4.0/libexec</property>
+            <property name="glassFishHome">/usr/local/opt/glassfish/libexec</property>
             <property name="adminHost">localhost</property>
             <property name="adminPort">4848</property>
             <property name="adminUser">admin</property>

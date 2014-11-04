@@ -1,7 +1,8 @@
 package controllers;
 
 
-import service.TodoService;
+import model.DBNote;
+import service.Todo;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -9,34 +10,40 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/todos")
+@javax.enterprise.context.RequestScoped
 public class TodoController {
 
     @Inject
-    private TodoService todoService;
+    private Todo todoNotes;
 
 
     @GET
     @Produces(APPLICATION_JSON)
     public Response getTodos(){
-
-        HashMap<String,List> response = new HashMap<>();
-        response.put("todos",todoService.findAll());
-
-        return Response.ok(response).build();
+        return Response.status(200).build();
     }
 
     @GET
     @Path("/{id}")
     @Produces(APPLICATION_JSON)
-    public Response getTodo(@PathParam("id") int id){
+    public Response getTodo(@PathParam("id") int id) {
+        if (id < 0) {
+            return Response.status(404).build();
+        }
 
-        return Response.ok(todoService.findById(id)).build();
+       DBNote todo = todoNotes.getTodo(id);
+
+       // MongoDB return null if nothing found
+       if(todo == null){
+           return Response.status(404).build();
+       }
+
+        return Response.ok(todo).build();
+
     }
 
 }
